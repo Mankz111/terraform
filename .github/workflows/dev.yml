@@ -37,3 +37,8 @@ jobs:
           # Opcional: Criar uma tag 'latest' também
           docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+      - name: Update ECS Service
+        run: |
+          # Este comando força o ECS a reiniciar o contentor usando a imagem mais recente
+          aws ecs update-service --cluster meu-cluster --service minha-app-service --force-new-deployment --region eu-west-1

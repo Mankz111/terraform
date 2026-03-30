@@ -44,7 +44,7 @@ resource "azuread_application_federated_identity_credential" "github" {
   display_name   = "github-actions"
   audiences      = ["api://AzureADTokenExchange"]
   issuer         = "https://token.actions.githubusercontent.com"
-  subject        = "repo:Mankz111/terraform:ref:refs/heads/main"
+  subject        = "repo:Mankz111/terraform:environment:main"
 }
 
 resource "azurerm_role_assignment" "acr_push" {

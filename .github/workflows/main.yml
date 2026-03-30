@@ -28,8 +28,14 @@ jobs:
       - name: Docker Login to ACR
         run: az acr login --name acrterraform
 
-      - name: Build and Push (Manual)
+      - name: Build and Push to ACR
         run: |
-          # Construir e enviar a imagem com a tag do commit (SHA)
+          # 1. Build da imagem
           docker build -t acrterraform.azurecr.io/acrterraform:${{ github.sha }} .
+          
+          # 2. Criar uma cópia da imagem com o nome 'latest'
+          docker tag acrterraform.azurecr.io/acrterraform:${{ github.sha }} acrterraform.azurecr.io/acrterraform:latest
+          
+          # 3. Enviar as DUAS etiquetas para a Azure
           docker push acrterraform.azurecr.io/acrterraform:${{ github.sha }}
+          docker push acrterraform.azurecr.io/acrterraform:latest

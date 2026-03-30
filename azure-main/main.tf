@@ -90,3 +90,9 @@ resource "azurerm_container_group" "aci" {
     }
   }
 }
+
+resource "azurerm_role_assignment" "rg_contributor" {
+  scope                = azurerm_resource_group.terraform-rg.id
+  role_definition_name = "Contributor"
+  principal_id         = azuread_service_principal.github.object_id
+}

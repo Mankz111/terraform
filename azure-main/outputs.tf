@@ -1,6 +1,6 @@
-# output "app_url" {
-#   value = "http://${azurerm_container_group.aci.ip_address}:8080"
-# }
+output "app_url" {
+  value = "http://${azurerm_container_group.aci.ip_address}:8080"
+}
 
 output "acr_login_server" {
   value = azurerm_container_registry.acr.login_server

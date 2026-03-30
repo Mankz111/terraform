@@ -19,6 +19,8 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Set Azure Subscription   # ← adiciona isto
+        run: az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       - name: Build and Push to ACR
         run: |
           az acr build --registry acrterraform --image acrterraform:${{ github.sha }} .

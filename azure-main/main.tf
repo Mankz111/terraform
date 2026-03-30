@@ -78,6 +78,11 @@ resource "azurerm_container_group" "aci" {
     identity_ids = [azurerm_user_assigned_identity.aci_identity.id]
   }
 
+  image_registry_credential {
+    server   = azurerm_container_registry.acr.login_server
+    user_assigned_identity_id = azurerm_user_assigned_identity.aci_identity.id
+  }
+
   container {
     name   = "minha-app"
     image  = "${azurerm_container_registry.acr.login_server}/acrterraform:${var.image_tag}"

@@ -36,7 +36,7 @@ resource "azuread_application" "github" {
 
 resource "azuread_service_principal" "github" {
   client_id = azuread_application.github.client_id
-  owners    = [data.azuread_client_config.current.object_id] # ← e aqui
+  owners    = [data.azuread_client_config.current.object_id]
 }
 
 resource "azuread_application_federated_identity_credential" "github" {

@@ -79,7 +79,7 @@ resource "azurerm_container_group" "aci" {
   }
 
   image_registry_credential {
-    server   = azurerm_container_registry.acr.login_server
+    server                    = azurerm_container_registry.acr.login_server
     user_assigned_identity_id = azurerm_user_assigned_identity.aci_identity.id
   }
 

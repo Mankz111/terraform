@@ -5,12 +5,10 @@ provider "aws" {
 resource "aws_ecr_repository" "docker-repo" {
   name                 = "ecr-repo"
   image_tag_mutability = "MUTABLE"
-
 }
 
 resource "aws_iam_role" "terraform-role" {
   name = "terraform-role"
-
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -37,7 +35,6 @@ resource "aws_iam_policy_attachment" "test-attach" {
 
 resource "aws_ecs_cluster" "cluster" {
   name = "meu-cluster"
-
 }
 
 resource "aws_ecs_task_definition" "task" {
@@ -86,7 +83,6 @@ resource "aws_security_group" "sg" {
   }
 
 }
-
 resource "aws_ecs_service" "service" {
   name            = "minha-app-service"
   cluster         = aws_ecs_cluster.cluster.id
@@ -100,3 +96,5 @@ resource "aws_ecs_service" "service" {
     assign_public_ip = true
   }
 }
+
+
